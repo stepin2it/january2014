@@ -18,6 +18,8 @@ import android.widget.TextView;
 public class TaskListActivity extends Activity
 {
 	private List<Photo> mListOfPhotos = new ArrayList<Photo>();
+	private static final String TAG = "TaskListActivity";
+	private static final boolean PROD = false;
 	
 	public class MyCustomAdapter extends ArrayAdapter<Photo>
 	{
@@ -45,10 +47,12 @@ public class TaskListActivity extends Activity
 				@Override
 				public void onClick(View v)
 				{
+					if (!PROD)
+					{
 					Log.d(TAG, "-------------------" + rownumber);
 					Log.d(TAG, "---id of photo :----------------" + mListOfPhotos.get(rownumber).getId());					
-					
-					 Intent intent = new Intent(PhotosListActivity.this, PhotoViewActivity.class);
+					}
+					 Intent intent = new Intent(TaskListActivity.this, TaskViewActivity.class);
 					 intent.putExtra("FLAG", 1);
 					 intent.putExtra("PHOTO_ID", mListOfPhotos.get(rownumber).getId());
 					 intent.putExtra("PHOTO_BITMAP", mPhotoBitmap.get(rownumber));
