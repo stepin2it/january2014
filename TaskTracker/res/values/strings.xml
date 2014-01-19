@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TaskTracker</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="label_list_title_text">List of Tasks</string>
+	<string name="label_title_text">Task Title</string>
+	<string name="label_date_text">Task Due Date</string>
+	<string name="label_desc_text">Task Description</string>
+	<string name="label_notes_text">Notes</string>
+</resources>
