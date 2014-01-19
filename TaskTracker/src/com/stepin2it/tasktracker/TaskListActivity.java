@@ -122,5 +122,13 @@ public class TaskListActivity extends Activity
 		
 		
 	}
+	
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		// TODO Add persistence using files or db
+		
+	}
 
 }
