@@ -27,4 +27,10 @@ Homework for 25Jan2014
 
 - Learn more about git commands from http://git-scm.com
 
+- Come up with additional features for TaskTracker application and
+try to implement them 
+
+- Install mysql from the following location :
+
+http://dev.mysql.com/downloads/windows/
 
