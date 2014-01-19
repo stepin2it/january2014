@@ -23,4 +23,8 @@ Homework for 18Jan2014
 Add advanced functionality to the Calculator using Netbeans
 
 
+Homework for 25Jan2014
+
+- Learn more about git commands from http://git-scm.com
+
 
