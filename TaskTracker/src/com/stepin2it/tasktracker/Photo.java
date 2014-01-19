@@ -3,17 +3,22 @@ package com.stepin2it.tasktracker;
 public class Photo
 {
 	private int photoId;
-	private String photoPath;
 	private String photoTitle;
 	private String photoDescription;
+	
+	public Photo(int photoId, String photoTitle, String photoDescription)
+	{
+		this.photoId = photoId;
+		this.photoTitle = photoTitle;
+		this.photoDescription = photoDescription;
+		
+	}
+	
 	public int getPhotoId()
 	{
 		return photoId;
 	}
-	public String getPhotoPath()
-	{
-		return photoPath;
-	}
+
 	public String getPhotoTitle()
 	{
 		return photoTitle;
@@ -25,10 +30,6 @@ public class Photo
 	public void setPhotoId(int photoId)
 	{
 		this.photoId = photoId;
-	}
-	public void setPhotoPath(String photoPath)
-	{
-		this.photoPath = photoPath;
 	}
 	public void setPhotoTitle(String photoTitle)
 	{

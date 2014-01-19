@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class TaskListActivity extends Activity
@@ -20,6 +21,7 @@ public class TaskListActivity extends Activity
 	private List<Photo> mListOfPhotos = new ArrayList<Photo>();
 	private static final String TAG = "TaskListActivity";
 	private static final boolean PROD = false;
+	private ListView myListView;
 	
 	public class MyCustomAdapter extends ArrayAdapter<Photo>
 	{
@@ -50,12 +52,12 @@ public class TaskListActivity extends Activity
 					if (!PROD)
 					{
 					Log.d(TAG, "-------------------" + rownumber);
-					Log.d(TAG, "---id of photo :----------------" + mListOfPhotos.get(rownumber).getId());					
+					Log.d(TAG, "---id of photo :----------------" + mListOfPhotos.get(rownumber).getPhotoId());					
 					}
 					 Intent intent = new Intent(TaskListActivity.this, TaskViewActivity.class);
 					 intent.putExtra("FLAG", 1);
-					 intent.putExtra("PHOTO_ID", mListOfPhotos.get(rownumber).getId());
-					 intent.putExtra("PHOTO_BITMAP", mPhotoBitmap.get(rownumber));
+					 intent.putExtra("PHOTO_ID", mListOfPhotos.get(rownumber).getPhotoId());
+					 // intent.putExtra("PHOTO_BITMAP", mPhotoBitmap.get(rownumber));
 					 //intent.putExtra("HASH_MAP", mMap);
 					 int requestCode = 0;
 					 //startActivityForResult(intent, requestCode);
@@ -64,14 +66,14 @@ public class TaskListActivity extends Activity
 				
 			});
 
-			TextView list_name = (TextView) row.findViewById(R.id.list_name);
+			TextView photoTitle = (TextView) row.findViewById(R.id.photoTitle);
 
-			TextView list_tagline = (TextView) row
-					.findViewById(R.id.list_tagline);
+			TextView photoDescription = (TextView) row
+					.findViewById(R.id.photoDescription);
 
-			list_name.setText(mListOfPhotos.get(position).getTitle());
+			photoTitle.setText(mListOfPhotos.get(position).getPhotoTitle());
 
-			list_tagline.setText(mListOfPhotos.get(position).getDescription().getContent());
+			photoDescription.setText(mListOfPhotos.get(position).getPhotoDescription());
 			
 			int i = 0;
 //			for(Photo p : mMap.keySet()){
@@ -79,17 +81,18 @@ public class TaskListActivity extends Activity
 //				Log.d(TAG, "--------------- Actual Photo reference is = "+mListOfPhotos.get(i++).toString());
 //			}		
 
-			imageView1 = (ImageView) row.findViewById(R.id.imageView1);
-			imageView1.setImageResource(R.drawable.ic_launcher);
-			
+			ImageView photoImageView = (ImageView) row.findViewById(R.id.photoImageView);
+			photoImageView.setImageResource(R.drawable.ic_launcher);
+			/*
 			if(mPhotoBitmap.get(position) != null){
 				if(mPhotoBitmap.get(position) != null){
-					imageView1.setImageBitmap(mPhotoBitmap.get(position));
+					photoImageView.setImageBitmap(mPhotoBitmap.get(position));
 				}
 				else{
 					Log.d(TAG, "Bitmap returned NULL");
 				}
 			}
+			*/
 			
 			return row;
 			
@@ -101,6 +104,21 @@ public class TaskListActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tasklist_activity);
+		myListView = (ListView) findViewById(R.id.myList);
+		
+		// dummy datasource
+		for (int i=0; i<20; i++)
+		{
+			Photo photo = new Photo(i, "Test Title", "Test Desc");
+			
+			mListOfPhotos.add(photo);
+			
+			
+		}
+		
+		MyCustomAdapter adapter = new MyCustomAdapter(this, R.layout.row_photos, mListOfPhotos);
+		
+		myListView.setAdapter(adapter);
 		
 		
 	}
