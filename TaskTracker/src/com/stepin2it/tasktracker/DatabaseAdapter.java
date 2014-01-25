@@ -12,7 +12,7 @@ public class DatabaseAdapter {
     public static final String KEY_ROWID = "id";
     public static final String KEY_TITLE = "title";
     public static final String KEY_DUEDATE = "duedate";
-    public static final String KEY_COURSE = "course";
+    public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_NOTES = "notes";
     private static final String TAG = "DBAdapter";
     
@@ -76,12 +76,12 @@ public class DatabaseAdapter {
     }
     
     //---insert a record into the database---
-    public long insertRecord(String title, String duedate, String course, String notes) 
+    public long insertRecord(String title, String duedate, String description, String notes) 
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_DUEDATE, duedate);
-        initialValues.put(KEY_COURSE, course);
+        initialValues.put(KEY_DESCRIPTION, description);
         initialValues.put(KEY_NOTES, notes);
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -96,7 +96,7 @@ public class DatabaseAdapter {
     public Cursor getAllRecords() 
     {
         return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_DUEDATE, KEY_COURSE, KEY_NOTES}, null, null, null, null, null);
+                KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES}, null, null, null, null, null);
     }
 
     //---retrieves a particular record---
@@ -104,7 +104,7 @@ public class DatabaseAdapter {
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                KEY_TITLE, KEY_DUEDATE, KEY_COURSE, KEY_NOTES}, 
+                KEY_TITLE, KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES}, 
                 KEY_ROWID + "=" + rowId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -115,12 +115,12 @@ public class DatabaseAdapter {
     }
 
     //---updates a record---
-    public boolean updateRecord(long rowId, String title, String duedate, String course, String notes) 
+    public boolean updateRecord(long rowId, String title, String duedate, String description, String notes) 
     {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_DUEDATE, duedate);
-        args.put(KEY_COURSE, course);
+        args.put(KEY_DESCRIPTION, description);
         args.put(KEY_NOTES, notes);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
