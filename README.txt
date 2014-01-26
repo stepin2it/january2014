@@ -54,7 +54,8 @@ User Stories
 7. User should be able to see the color coded view of task list
  (FilterView toggle)
  
-
+8. On the main screen, the fields should be cleared when user 
+returns to the screen from acitivity list 
 
 
 Homework for 1Feb2014

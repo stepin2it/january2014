@@ -9,4 +9,5 @@
 	<string name="label_date_text">Task Due Date</string>
 	<string name="label_desc_text">Task Description</string>
 	<string name="label_notes_text">Notes</string>
+	<string name="label_empty"></string>
 </resources>

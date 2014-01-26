@@ -24,6 +24,8 @@
         </activity>
         <activity android:name="com.stepin2it.tasktracker.TaskListActivity" >
         </activity>
+        <activity android:name="com.stepin2it.tasktracker.TaskViewActivity" >
+        </activity>
     </application>
 
 </manifest>

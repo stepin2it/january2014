@@ -73,9 +73,9 @@ public class TaskListActivity extends Activity
 					// intent.putExtra("PHOTO_BITMAP",
 					// mPhotoBitmap.get(rownumber));
 					// intent.putExtra("HASH_MAP", mMap);
-					int requestCode = 0;
-					// startActivityForResult(intent, requestCode);
-					startActivity(intent);
+					int requestCode = 1;
+					startActivityForResult(intent, requestCode);
+					// startActivity(intent);
 				}
 
 			});
@@ -176,6 +176,16 @@ public class TaskListActivity extends Activity
 	{
 		Log.d(TAG, "id: " + c.getString(0) + "\n" + "Title: " + c.getString(1)
 				+ "\n" + "Due Date:  " + c.getString(2));
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode==1)
+		{
+		Log.d(TAG, "The user had gone from TaskListActivity to TaskViewActivity");
+		
+		}
 	}
 
 }
