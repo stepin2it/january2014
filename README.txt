@@ -34,3 +34,31 @@ try to implement them
 
 http://dev.mysql.com/downloads/windows/
 
+Wishlist for TaskTracker application
+=====================================
+
+User Stories
+
+1. User should be able to add tasks
+
+2. User should be able to view a list of tasks
+
+3. User should be able to navigate to task detail
+
+4. User should be able to mark a task as done
+
+5. User should be able to re-order tasks (homework)
+
+6. User should be able to delete a task from the detail view
+
+7. User should be able to see the color coded view of task list
+ (FilterView toggle)
+ 
+
+
+
+Homework for 1Feb2014
+=====================
+
+- Please try to add the unfinished functionality to the TaskTracker application 
+

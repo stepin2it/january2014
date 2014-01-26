@@ -50,7 +50,7 @@ public class MainActivity extends Activity
 		// Button b1 = new Button(this);
 
 		mAddButton.setText("Add New Task");
-
+		/*
 		try
 		{
 			String destPath = "/data/data/" + getPackageName()
@@ -68,7 +68,7 @@ public class MainActivity extends Activity
 		{
 			e.printStackTrace();
 		}
-
+		*/
 		final DatabaseAdapter db = new DatabaseAdapter(getApplicationContext());
 
 		mAddButton.setOnClickListener(new View.OnClickListener()
@@ -81,12 +81,13 @@ public class MainActivity extends Activity
 						TaskListActivity.class);
 				startActivity(intent);
 				db.open();
-
-				if ((!TextUtils.isEmpty(title)) && (!TextUtils.isEmpty(date))
-						&& (!TextUtils.isEmpty(description))
-						&& (!TextUtils.isEmpty(notes)))
+				
+//				if ((!TextUtils.isEmpty(title)) && (!TextUtils.isEmpty(date))
+//						&& (!TextUtils.isEmpty(description))
+//						&& (!TextUtils.isEmpty(notes)))
+				if (true)
 				{
-
+					if (DEBUG) Log.d(TAG, "Preparing to insert record");
 					long id = db.insertRecord(mTitleText.getText().toString(),
 							mDateText.getText().toString(), mDescriptionText
 									.getText().toString(), mNotesText.getText()

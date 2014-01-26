@@ -21,16 +21,23 @@ import android.widget.Toast;
 public class TaskListActivity extends Activity
 {
 	private List<Photo> mListOfPhotos = new ArrayList<Photo>();
+	private List<Task> mListOfTasks = new ArrayList<Task>();
+	
 	private static final String TAG = "TaskListActivity";
 	private static final boolean DEBUG = true;
 	private ListView myListView;
+	public static final String KEY_ROWID = "id";
+	public static final String KEY_TITLE = "title";
+	public static final String KEY_DUEDATE = "duedate";
+	public static final String KEY_DESCRIPTION = "description";
+	public static final String KEY_NOTES = "notes";
 
-	public class MyCustomAdapter extends ArrayAdapter<Photo>
+	public class MyCustomAdapter extends ArrayAdapter<Task>
 	{
 		public MyCustomAdapter(Context context, int textViewResourceId,
-				List<Photo> mListOfPhotos)
+				List<Task> mListOfTasks)
 		{
-			super(context, textViewResourceId, mListOfPhotos);
+			super(context, textViewResourceId, mListOfTasks);
 		}
 
 		@Override
@@ -55,14 +62,14 @@ public class TaskListActivity extends Activity
 					if (DEBUG)
 					{
 						Log.d(TAG, "-------------------" + rownumber);
-						Log.d(TAG, "---id of photo :----------------"
-								+ mListOfPhotos.get(rownumber).getPhotoId());
+						Log.d(TAG, "---id of task :----------------"
+								+ mListOfTasks.get(rownumber).getTaskId());
 					}
 					Intent intent = new Intent(TaskListActivity.this,
 							TaskViewActivity.class);
 					intent.putExtra("FLAG", 1);
-					intent.putExtra("PHOTO_ID", mListOfPhotos.get(rownumber)
-							.getPhotoId());
+					intent.putExtra("TASK_ID", mListOfTasks.get(rownumber)
+							.getTaskId());
 					// intent.putExtra("PHOTO_BITMAP",
 					// mPhotoBitmap.get(rownumber));
 					// intent.putExtra("HASH_MAP", mMap);
@@ -78,10 +85,9 @@ public class TaskListActivity extends Activity
 			TextView photoDescription = (TextView) row
 					.findViewById(R.id.photoDescription);
 
-			photoTitle.setText(mListOfPhotos.get(position).getPhotoTitle());
+			photoTitle.setText(mListOfTasks.get(position).getTitle());
 
-			photoDescription.setText(mListOfPhotos.get(position)
-					.getPhotoDescription());
+			photoDescription.setText(mListOfTasks.get(position).getDescription());
 
 			int i = 0;
 			// for(Photo p : mMap.keySet()){
@@ -115,31 +121,32 @@ public class TaskListActivity extends Activity
 			Log.d(TAG, "Started TaskListActivity : onCreate");
 		myListView = (ListView) findViewById(R.id.myList);
 
-		// dummy datasource
-		for (int i = 0; i < 20; i++)
-		{
-			Photo photo = new Photo(i, "Test Title", "Test Desc");
 
-			mListOfPhotos.add(photo);
-
-		}
 
 		// get records from database
 		// ---get all Records---
 		DatabaseAdapter db = new DatabaseAdapter(this);
 		db.open();
 		Cursor c = db.getAllRecords();
+		Log.d(TAG, "Number of records : " + c.getCount());
 		if (c.moveToFirst())
 		{
 			do
 			{
+				Task task = new Task(Integer.valueOf(c.getString(0)),
+						c.getString(1),
+						c.getString(2),
+						c.getString(3),
+						c.getString(4));
+				
+				mListOfTasks.add(task);
 				displayRecord(c);
 			} while (c.moveToNext());
 		}
 		db.close();
 
 		MyCustomAdapter adapter = new MyCustomAdapter(this,
-				R.layout.row_photos, mListOfPhotos);
+				R.layout.row_photos, mListOfTasks);
 
 		myListView.setAdapter(adapter);
 
