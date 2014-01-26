@@ -7,17 +7,19 @@ public class Task
 	private String duedate;
 	private String description;
 	private String notes;
+	private int done;
 	
 
-	public Task(int taskid, String title, String duedate, String description,
-			String notes)
+	public Task(int taskId, String title, String duedate, String description,
+			String notes, int done)
 	{
 		super();
-		this.taskId = taskid;
+		this.taskId = taskId;
 		this.title = title;
 		this.duedate = duedate;
 		this.description = description;
 		this.notes = notes;
+		this.done = done;
 	}
 	public int getTaskId()
 	{
@@ -59,5 +61,22 @@ public class Task
 	{
 		this.notes = notes;
 	}
+	public int getDone()
+	{
+		return done;
+	}
+	public void setDone(int done)
+	{
+		this.done = done;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -14,6 +14,7 @@ public class DatabaseAdapter {
     public static final String KEY_DUEDATE = "duedate";
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_NOTES = "notes";
+    public static final String KEY_DONE = "done";
     private static final String TAG = "DBAdapter";
     
     private static final String DATABASE_NAME = "TasksDB";
@@ -22,7 +23,8 @@ public class DatabaseAdapter {
 
     private static final String DATABASE_CREATE =
         "create table if not exists tasks (id integer primary key autoincrement, "
-        + "title VARCHAR not null, duedate date, description VARCHAR, notes VARCHAR );";
+        + "title VARCHAR not null, duedate date, description VARCHAR, notes VARCHAR, " +
+        " done BOOL);";
         
     private final Context context;    
 
@@ -76,13 +78,18 @@ public class DatabaseAdapter {
     }
     
     //---insert a record into the database---
-    public long insertRecord(String title, String duedate, String description, String notes) 
+    public long insertRecord(String title, 
+    		String duedate, 
+    		String description, 
+    		String notes, 
+    		boolean done) 
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_DUEDATE, duedate);
         initialValues.put(KEY_DESCRIPTION, description);
         initialValues.put(KEY_NOTES, notes);
+        initialValues.put(KEY_DONE, done);
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
 
@@ -96,7 +103,7 @@ public class DatabaseAdapter {
     public Cursor getAllRecords() 
     {
         return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES}, null, null, null, null, null);
+                KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES, KEY_DONE}, null, null, null, null, null);
     }
 
     //---retrieves a particular record---
@@ -104,7 +111,7 @@ public class DatabaseAdapter {
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                KEY_TITLE, KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES}, 
+                KEY_TITLE, KEY_DUEDATE, KEY_DESCRIPTION, KEY_NOTES, KEY_DONE}, 
                 KEY_ROWID + "=" + rowId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -115,19 +122,20 @@ public class DatabaseAdapter {
     }
 
     //---updates a record---
-    public boolean updateRecord(long rowId, String title, String duedate, String description, String notes) 
+    public boolean updateRecord(long rowId, 
+    		String title, 
+    		String duedate, 
+    		String description, 
+    		String notes, 
+    		boolean done) 
     {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_DUEDATE, duedate);
         args.put(KEY_DESCRIPTION, description);
         args.put(KEY_NOTES, notes);
+        args.put(KEY_DONE, done);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-	public boolean deleteRecord(int i)
-	{
-		// TODO Homework
-		return false;
-	}
 }

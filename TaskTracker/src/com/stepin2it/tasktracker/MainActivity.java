@@ -50,25 +50,7 @@ public class MainActivity extends Activity
 		// Button b1 = new Button(this);
 
 		mAddButton.setText("Add New Task");
-		/*
-		try
-		{
-			String destPath = "/data/data/" + getPackageName()
-					+ "/databases/TaskDB";
-			File f = new File(destPath);
-			if (!f.exists())
-			{
-				copyDB(getBaseContext().getAssets().open("mydb"),
-						new FileOutputStream(destPath));
-			}
-		} catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		*/
+	
 		final DatabaseAdapter db = new DatabaseAdapter(getApplicationContext());
 
 		mAddButton.setOnClickListener(new View.OnClickListener()
@@ -91,7 +73,7 @@ public class MainActivity extends Activity
 					long id = db.insertRecord(mTitleText.getText().toString(),
 							mDateText.getText().toString(), mDescriptionText
 									.getText().toString(), mNotesText.getText()
-									.toString());
+									.toString(), false);
 
 				}
 				else

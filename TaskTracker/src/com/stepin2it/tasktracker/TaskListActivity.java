@@ -50,7 +50,7 @@ public class TaskListActivity extends Activity
 			if (row == null)
 			{
 				LayoutInflater inflater = getLayoutInflater();
-				row = inflater.inflate(R.layout.row_photos, parent, false);
+				row = inflater.inflate(R.layout.row_item, parent, false);
 			}
 
 			row.setOnClickListener(new View.OnClickListener()
@@ -80,14 +80,24 @@ public class TaskListActivity extends Activity
 
 			});
 
-			TextView photoTitle = (TextView) row.findViewById(R.id.photoTitle);
+			TextView taskTitle = (TextView) row.findViewById(R.id.itemTitle);
 
-			TextView photoDescription = (TextView) row
-					.findViewById(R.id.photoDescription);
+			TextView taskDescription = (TextView) row
+					.findViewById(R.id.itemDescription);
 
-			photoTitle.setText(mListOfTasks.get(position).getTitle());
+			taskTitle.setText(mListOfTasks.get(position).getTitle());
 
-			photoDescription.setText(mListOfTasks.get(position).getDescription());
+			taskDescription.setText(mListOfTasks.get(position).getDescription());
+			
+			if (mListOfTasks.get(position).getDone()==1)
+			{
+				row.setBackgroundColor(this.getContext().getResources().getColor(R.color.task_done));
+				
+			}
+			else
+			{
+				row.setBackgroundColor(this.getContext().getResources().getColor(R.color.task_not_done));
+			}
 
 			int i = 0;
 			// for(Photo p : mMap.keySet()){
@@ -97,9 +107,9 @@ public class TaskListActivity extends Activity
 			// "--------------- Actual Photo reference is = "+mListOfPhotos.get(i++).toString());
 			// }
 
-			ImageView photoImageView = (ImageView) row
-					.findViewById(R.id.photoImageView);
-			photoImageView.setImageResource(R.drawable.ic_launcher);
+			ImageView itemImageView = (ImageView) row
+					.findViewById(R.id.itemImageView);
+			itemImageView.setImageResource(R.drawable.ic_launcher);
 			/*
 			 * if(mPhotoBitmap.get(position) != null){
 			 * if(mPhotoBitmap.get(position) != null){
@@ -133,11 +143,13 @@ public class TaskListActivity extends Activity
 		{
 			do
 			{
-				Task task = new Task(Integer.valueOf(c.getString(0)),
+				Task task = new Task(c.getInt(0),
 						c.getString(1),
 						c.getString(2),
 						c.getString(3),
-						c.getString(4));
+						c.getString(4),
+						c.getInt(5)
+						);
 				
 				mListOfTasks.add(task);
 				displayRecord(c);
