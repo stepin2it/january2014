@@ -63,3 +63,7 @@ Homework for 1Feb2014
 
 - Please try to add the unfinished functionality to the TaskTracker application 
 
+- Please try to debug the TaskViewActivity in the TaskTracker application
+
+- Please try to go through the steps in the J2EE_1 slides in the slides folder   
+
