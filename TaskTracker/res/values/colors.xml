@@ -2,4 +2,5 @@
 <resources>
     <color name="task_done">#5000FF00</color>
     <color name="task_not_done">#50FF0000</color>
+    <color name="task_selected">#5000FFFF</color>
 </resources>

@@ -137,5 +137,14 @@ public class DatabaseAdapter {
         args.put(KEY_DONE, done);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
+    //---update done value in db 
+    //---updates a record---
+    public boolean updateRecord(long rowId,
+    		boolean done) 
+    {
+        ContentValues args = new ContentValues();
+        args.put(KEY_DONE, done);
+        return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    }
 
 }

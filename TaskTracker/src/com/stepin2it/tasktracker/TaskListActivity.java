@@ -46,7 +46,7 @@ public class TaskListActivity extends Activity
 
 			final int rownumber = position;
 			View row = convertView;
-
+			final View rowItem = convertView;
 			if (row == null)
 			{
 				LayoutInflater inflater = getLayoutInflater();
@@ -78,6 +78,17 @@ public class TaskListActivity extends Activity
 					// startActivity(intent);
 				}
 
+			});
+			
+			row.setOnLongClickListener(new View.OnLongClickListener()
+			{
+				
+				@Override
+				public boolean onLongClick(View v)
+				{
+					Log.d(TAG, "TaskListActivity long pressed");
+					return true;
+				}
 			});
 
 			TextView taskTitle = (TextView) row.findViewById(R.id.itemTitle);
@@ -127,12 +138,17 @@ public class TaskListActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tasklist_activity);
+		
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		// TODO Add persistence using files or db
 		if (DEBUG)
 			Log.d(TAG, "Started TaskListActivity : onCreate");
 		myListView = (ListView) findViewById(R.id.myList);
-
-
-
 		// get records from database
 		// ---get all Records---
 		DatabaseAdapter db = new DatabaseAdapter(this);
@@ -162,13 +178,6 @@ public class TaskListActivity extends Activity
 
 		myListView.setAdapter(adapter);
 
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-		// TODO Add persistence using files or db
 
 	}
 
