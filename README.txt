@@ -67,7 +67,7 @@ Homework for 1Feb2014
 
 - Please try to go through the steps in the J2EE_1 slides in the slides folder   
 
-Homework for 7Feb2014
+Homework for 8Feb2014
 =====================
 
 - Please do the steps in J2EE_2.pdf slides (use both maven and non-maven approach to 
