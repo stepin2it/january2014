@@ -7,4 +7,14 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<description></description>
+		<display-name>ServletsDemo</display-name>
+		<servlet-name>ServletsDemo</servlet-name>
+		<servlet-class>com.example.servletdemo.ServletDemo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletsDemo</servlet-name>
+		<url-pattern>/servletsdemo</url-pattern>
+	</servlet-mapping>
 </web-app>

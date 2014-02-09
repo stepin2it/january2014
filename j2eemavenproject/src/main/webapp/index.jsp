@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,7 +8,22 @@
 <title>J2EE Maven Project</title>
 </head>
 <body>
-<h1>Welcome to J2EE Maven Project</h1>
-
+	<h1>Welcome to J2EE Maven Project</h1>
+	￼
+	<form id="contactForm" action="servlettest" method="post">
+		<table border=”0”>
+			<tr>
+				<td>First Name :</td>
+				<td><input type="text" name="firstname" /></td>
+			</tr>
+			<tr>
+				<td>Last Name :</td>
+				<td><input type="text" name="lastname" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="submit" /></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
